@@ -49,6 +49,17 @@ swapped does not affect the end solution. It is perfectly valid to swap by 4x4
 first, then by 1x1, and then finally by 2x2. This would be harder to code, but
 it is a valid solution.
 
+Interestingly, the bit-mask needed to select the 4x4, 2x2, and 1x1 blocks looks
+something like the following:
+```c
+uint8_t mask_4 = 0b11110000;
+uint8_t mask_2 = 0b11001100;
+uint8_t mask_1 = 0b10101010;
+```
+
+Hard-coding these mask constants works, but would not scale well if this method
+was applied to 16b, 32b, or 64b bit-matrices.
+
 ## References ##
 
 * [Binary code modulation](http://www.batsocks.co.uk/readme/art_bcm_1.htm)
