@@ -35,27 +35,29 @@
 
 
 #if BIT_WIDTH == 8
-    typedef uint8_t uintX;
+    typedef uint8_t uintx;
 #elif BIT_WIDTH == 16
-    typedef uint16_t uintX;
+    typedef uint16_t uintx;
 #elif BIT_WIDTH == 32
-    typedef uint32_t uintX;
+    typedef uint32_t uintx;
 #elif BIT_WIDTH == 64
-    typedef uint64_t uintX;
+    typedef uint64_t uintx;
+#else
+    #error "Unknown bit-width value"
 #endif
-uintX bit_matrix[BIT_WIDTH];
+uintx bit_matrix[BIT_WIDTH];
 
 
-void matrix_transpose(uintX* matrix);
-void matrix_swap(uintX matrix[], int width, uintX mask);
-void matrix_print(uintX matrix[]);
+void matrix_transpose(uintx* matrix);
+void matrix_swap(uintx matrix[], int width, uintx mask);
+void matrix_print(uintx matrix[]);
 
 
 int main() {
     // Get random data for the bit matrix
     int scan;
     srand(time(NULL));
-    for (scan = 0; scan < sizeof(uintX)*sizeof(uintX)*8; scan++) {
+    for (scan = 0; scan < sizeof(uintx)*sizeof(uintx)*8; scan++) {
         ((uint8_t*)bit_matrix)[scan] = rand();
     }
 
@@ -73,9 +75,9 @@ int main() {
 
 
 // Perform a bit matrix tranpose along the upper-right to lower-left diagonal.
-void matrix_transpose(uintX matrix[]) {
-    int swap_width = sizeof(uintX)*8;
-    uintX swap_mask = ((uintX)(-1));
+void matrix_transpose(uintx matrix[]) {
+    int swap_width = sizeof(uintx)*8;
+    uintx swap_mask = ((uintx)(-1));
     while (swap_width != 1) {
         swap_width >>= 1;
         swap_mask = swap_mask ^ (swap_mask >> swap_width);
@@ -85,12 +87,12 @@ void matrix_transpose(uintX matrix[]) {
 
 
 // Swap blocks within the bit matrix.
-void matrix_swap(uintX matrix[], int width, uintX mask) {
+void matrix_swap(uintx matrix[], int width, uintx mask) {
     int inner, outer;
-    for (outer = 0; outer < (sizeof(uintX)*8)/(width*2); outer++) {
-        for (inner = 0; inner < width; inner++)         {
-            uintX* x = &matrix[(inner) + (outer*width*2)];
-            uintX* y = &matrix[(inner+width) + (outer*width*2)];
+    for (outer = 0; outer < (sizeof(uintx)*8)/(width*2); outer++) {
+        for (inner = 0; inner < width; inner++) {
+            uintx* x = &matrix[(inner) + (outer*width*2)];
+            uintx* y = &matrix[(inner+width) + (outer*width*2)];
 
             *x = ((*y << width) & mask) ^ *x;
             *y = ((*x & mask) >> width) ^ *y;
@@ -101,12 +103,12 @@ void matrix_swap(uintX matrix[], int width, uintX mask) {
 
 
 // Pretty print the bit matrix in binary form.
-void matrix_print(uintX matrix[]) {
+void matrix_print(uintx matrix[]) {
     int inner, outer;
-    uintX sig_mask = (uintX)1 << ((sizeof(uintX)*8)-1);
-    for (outer = 0; outer < sizeof(uintX)*8; outer++) {
-        uintX pattern = matrix[outer];
-        for (inner = 0; inner < sizeof(uintX)*8; inner++) {
+    uintx sig_mask = (uintx)1 << ((sizeof(uintx)*8)-1);
+    for (outer = 0; outer < sizeof(uintx)*8; outer++) {
+        uintx pattern = matrix[outer];
+        for (inner = 0; inner < sizeof(uintx)*8; inner++) {
             if (pattern & sig_mask)
             { printf("%s1 ",CODE1); }
             else
