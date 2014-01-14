@@ -2,7 +2,7 @@
 
 ## Introduction ##
 
-![matrix-transpose-into](http://code.digital-static.net/matrix-transpose/raw/tip/doc/matrix-transpose-intro.png)
+![matrix-transpose-intro](http://code.digital-static.net/matrix-transpose/raw/tip/doc/matrix-transpose-intro.png)
 
 This code was written to test an algorithm to perform transpose on a bit-matrix.
 In this example, the transpose is performed by swapping all bits in a square
@@ -38,6 +38,8 @@ The code example commited is generalized to operate on any n-bit matrix. Since
 modern processors are now 64-bit, this allows efficient transposing of 8b, 16b,
 32b, and 64b square bit-matrices. The operational complexity to perform a
 transpose is _O(n\*log(n))_ as opposed to _O(n\*n)_ without this method.
+
+![matrix-transpose-method](http://code.digital-static.net/matrix-transpose/raw/tip/doc/matrix-transpose-method.png)
 
 ## References ##
 
