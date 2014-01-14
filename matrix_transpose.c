@@ -76,7 +76,7 @@ int main() {
 
 // Perform a bit matrix tranpose along the upper-right to lower-left diagonal.
 void matrix_transpose(uintx matrix[]) {
-    int swap_width = sizeof(uintx)*8;
+    int swap_width = BIT_WIDTH;
     uintx swap_mask = ((uintx)(-1));
     while (swap_width != 1) {
         swap_width >>= 1;
@@ -89,7 +89,7 @@ void matrix_transpose(uintx matrix[]) {
 // Swap blocks within the bit matrix.
 void matrix_swap(uintx matrix[], int width, uintx mask) {
     int inner, outer;
-    for (outer = 0; outer < (sizeof(uintx)*8)/(width*2); outer++) {
+    for (outer = 0; outer < BIT_WIDTH/(width*2); outer++) {
         for (inner = 0; inner < width; inner++) {
             uintx* x = &matrix[(inner) + (outer*width*2)];
             uintx* y = &matrix[(inner+width) + (outer*width*2)];
