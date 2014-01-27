@@ -34,7 +34,7 @@ at a time, the ALU is used to shift 8-bits at a time. Note that the number of
 swap operation does not go down, but rather this method exploits a form of
 parallelism by utilizing the properties of the hardware.
 
-The code example commited is generalized to operate on any n-bit matrix. Since
+The code example committed is generalized to operate on any n-bit matrix. Since
 modern processors are now 64-bit, this allows efficient transposing of 8b, 16b,
 32b, and 64b square bit-matrices. The operational complexity to perform a
 transpose is _O(n\*log(n))_ as opposed to _O(n\*n)_ without this method.
