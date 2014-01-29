@@ -26,6 +26,7 @@ contains the second lowest bit of all outputs, and so on. Now, all that needs
 to be done is to write each register to the output whenever the hardware timer
 triggers an interrupt.
 
+
 ## Theory ##
 
 This technique exploits the fact that an 8-bit microcontroller almost always has
@@ -74,6 +75,7 @@ while (width > 1) {
 	mask ^= mask >> width;
 }
 ```
+
 
 ## References ##
 
